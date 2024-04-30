@@ -1,6 +1,9 @@
 package com.carmine.UserCart.Models;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.util.Date;
 
 @Entity
 @Table(name="users")
@@ -27,6 +30,9 @@ public class User {
 
     @Column
     private Double cash;
+
+    @CreatedDate
+    private Date createdAt;
 
     public User() {}
 

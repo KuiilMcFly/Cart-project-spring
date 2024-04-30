@@ -1,7 +1,9 @@
 package com.carmine.UserCart.Controllers;
 
+import com.carmine.UserCart.Dto.UserRequestDto;
 import com.carmine.UserCart.Models.User;
 import com.carmine.UserCart.Repository.UserRepository;
+import com.carmine.UserCart.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<User>> getAllUsers(){
         try {
@@ -68,4 +73,10 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
+    @GetMapping("/getUsersBySurname")
+    public  ResponseEntity<User> getUsersBySurname(@RequestBody UserRequestDto userRequestDto){
+        userService.getUsertDtoById(userRequestDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
